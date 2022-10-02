@@ -27,13 +27,14 @@ jobs:
 
   unify:
     runs-on: ubuntu-latest
+    needs: [job1,job2]
     steps:
     - name: echos
       # if: github.ref == 'refs/heads/main' && github.repository == ''
-      env:
-        RESULT1: ${{ jobs.job1.outputs.output1 }}
-        RESULT2: ${{ jobs.job2.outputs.output1 }}
+      # env:
+      #   RESULT1: ${{ jobs.job1.outputs.output1 }}
+      #   RESULT2: ${{ jobs.job2.outputs.output1 }}
       run: |
-        echo $RESULT1
-        echo $RESULT2
-        echo ${{ jobs.job2.outputs.output1 }}
+        echo ${{ needs.job1.outputs.output1 }}
+        echo ${{ needs.job2.outputs.output1 }}
+        echo ${{ needs.job2.outputs.outputX }}
