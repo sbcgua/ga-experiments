@@ -3,7 +3,7 @@ name: main-build
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   job1:
