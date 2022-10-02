@@ -1,0 +1,39 @@
+name: main-build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.do_stuff.outputs.result1 }}
+    steps:
+    - uses: actions/checkout@v3
+    - id: do_stuff
+      name: do stuff
+      run: echo "::set-output name=result1::hello"
+
+  job2:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.do_stuff2.outputs.result2 }}
+    steps:
+    - id: do_stuff2
+      name: do stuff2
+      run: bash ./ci/do-something.sh
+
+  unify:
+    runs-on: ubuntu-latest
+    steps:
+    - name: echos
+      # if: github.ref == 'refs/heads/main' && github.repository == ''
+      env:
+        RESULT1: ${{ jobs.job1.outputs.output1 }}
+        RESULT2: ${{ jobs.job2.outputs.output1 }}
+      run: |
+        echo $RESULT1
+        echo $RESULT2
+        echo ${{ jobs.job2.outputs.output1 }}
