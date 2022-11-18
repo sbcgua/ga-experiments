@@ -46,9 +46,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        repository: abapGit/build
-        ref: fix-tagging3
+      # with:
+      #   repository: abapGit/build
+      #   ref: fix-tagging3
     - name: mirror tag to the artifact
       env:
         GITHUB_API_KEY: 'xxxx#/abc'
