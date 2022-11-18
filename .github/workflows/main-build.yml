@@ -57,7 +57,7 @@ jobs:
       # run: |
       #   ./ci/push-tag.sh 123
       run: |
-        echo "hello=world" >> $GITHUB_OUTPUT
+        echo "HELLO=world" >> $GITHUB_OUTPUT
   
   test-needs:
     runs-on: ubuntu-latest
@@ -65,4 +65,5 @@ jobs:
     steps:
     - name: test needs
       run: |
-        echo pre ${{ needs.auto-tag-artifact.outputs.hello }}
+        echo pre ${{ needs.auto-tag-artifact.outputs.HELLO }}
+        echo full ${{ needs.auto-tag-artifact }}
