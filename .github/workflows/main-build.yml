@@ -44,12 +44,15 @@ jobs:
 
   auto-tag-artifact:
     runs-on: ubuntu-latest
+    outputs:
+      pushedTag: ${{ steps.stepx.outputs.hello }}    
     steps:
     - uses: actions/checkout@v3
       # with:
       #   repository: abapGit/build
       #   ref: fix-tagging3
     - name: mirror tag to the artifact
+      id: stepx
       env:
         GITHUB_API_KEY: 'xxxx#/abc'
         GIT_USER_NAME: 'github-actions[bot]'
@@ -57,7 +60,9 @@ jobs:
       # run: |
       #   ./ci/push-tag.sh 123
       run: |
-        echo "HELLO=world" >> $GITHUB_OUTPUT
+        echo "hello=world" >> $GITHUB_OUTPUT
+    - name: read var
+      run: echo "${{ steps.stepx.outputs.hello }}"        
   
   test-needs:
     runs-on: ubuntu-latest
@@ -65,5 +70,5 @@ jobs:
     steps:
     - name: test needs
       run: |
-        echo pre ${{ needs.auto-tag-artifact.outputs.HELLO }}
+        echo pre ${{ needs.auto-tag-artifact.outputs.hello }}
         echo -e full "${{ toJSON(needs.auto-tag-artifact) }}"
