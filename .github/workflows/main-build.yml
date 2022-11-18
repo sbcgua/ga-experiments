@@ -54,8 +54,9 @@ jobs:
         GITHUB_API_KEY: 'xxxx#/abc'
         GIT_USER_NAME: 'github-actions[bot]'
         GIT_USER_EMAIL: 'github-actions[bot]@users.noreply.github.com'
+      # run: |
+      #   ./ci/push-tag.sh 123
       run: |
-        ./ci/push-tag.sh 123
         echo "hello=world" >> $GITHUB_OUTPUT
   
   test-needs:
