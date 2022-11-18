@@ -45,7 +45,7 @@ jobs:
   auto-tag-artifact:
     runs-on: ubuntu-latest
     outputs:
-      pushedTag: ${{ steps.stepx.outputs.hello }}    
+      hello: ${{ steps.stepx.outputs.hello }}    
     steps:
     - uses: actions/checkout@v3
       # with:
