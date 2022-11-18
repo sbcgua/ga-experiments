@@ -48,7 +48,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         repository: abapGit/build
-        ref: sbcgua/fix-tagging2
+        ref: sbcgua/fix-tagging3
     - name: mirror tag to the artifact
       env:
         GITHUB_API_KEY: 'xxxx'
