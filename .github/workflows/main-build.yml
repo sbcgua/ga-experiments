@@ -66,4 +66,4 @@ jobs:
     - name: test needs
       run: |
         echo pre ${{ needs.auto-tag-artifact.outputs.HELLO }}
-        echo full ${{ needs.auto-tag-artifact }}
+        echo full ${{ toJSON(needs.auto-tag-artifact) }}
