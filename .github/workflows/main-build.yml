@@ -72,3 +72,26 @@ jobs:
       run: |
         echo pre ${{ needs.auto-tag-artifact.outputs.hello }}
         echo -e full "${{ toJSON(needs.auto-tag-artifact) }}"
+
+  multi-clone:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        repository: abapGit/build
+        path: build
+    - uses: actions/checkout@v3
+      with:
+        repository: abapGit/abapGit
+        path: abapGit
+    - name: mirror tag to the artifact
+      env:
+        GITHUB_API_KEY: 'xxxx#/abc'
+        GIT_USER_NAME: 'github-actions[bot]'
+        GIT_USER_EMAIL: 'github-actions[bot]@users.noreply.github.com'
+      # run: |
+      #   ./ci/push-tag.sh 123
+      run: |
+        ls -AFl
+        cd abapGit
+        ../build/ci/push-tag.sh 123
