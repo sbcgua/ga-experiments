@@ -24,4 +24,4 @@ git remote -v
 
 git tag $TAG || exit 1
 # git push $PUSH_URL $TAG || exit 1
-git push $TAG || exit 1
+git push origin $TAG || exit 1
