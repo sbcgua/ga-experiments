@@ -48,21 +48,22 @@ jobs:
       hello: ${{ steps.stepx.outputs.hello }}    
     steps:
     - uses: actions/checkout@v3
-      # with:
+      with:
+        ssh-key: ${{ secrets.DEPLOY_KEY }}
       #   repository: abapGit/build
       #   ref: fix-tagging3
     - name: mirror tag to the artifact
       id: stepx
       env:
-        GITHUB_API_KEY: 'xxxx#/abc'
+        # GITHUB_API_KEY: 'xxxx#/abc'
         GIT_USER_NAME: 'github-actions[bot]'
         GIT_USER_EMAIL: 'github-actions[bot]@users.noreply.github.com'
-      # run: |
-      #   ./ci/push-tag.sh 123
       run: |
-        echo "hello=world" >> $GITHUB_OUTPUT
-    - name: read var
-      run: echo "${{ steps.stepx.outputs.hello }}"        
+        ./ci/push-tag.sh v123
+      # run: |
+      #   echo "hello=world" >> $GITHUB_OUTPUT
+    # - name: read var
+    #   run: echo "${{ steps.stepx.outputs.hello }}"        
   
   test-needs:
     runs-on: ubuntu-latest
