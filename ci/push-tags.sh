@@ -23,4 +23,5 @@ git remote -v
 # e.g. https://$GITHUB_API_KEY@github.com/larshp/abapGit.git
 
 git tag $TAG || exit 1
-git push $PUSH_URL $TAG || exit 1
+# git push $PUSH_URL $TAG || exit 1
+git push $TAG || exit 1
